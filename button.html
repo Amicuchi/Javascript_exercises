@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="top-bar-container">
+        <a href="/index.html">Página inicial</a>
+        <hr> <br>
+    </div>
+
+    <div id="app2">
+        <input type="text" name="nome" id="nome">
+        <button class="botao">Adicionar</button>
+    </div>
+
+
+    <script>
+        var inputElement = document.getElementById('nome');
+        // Método que busca a informação pelo id fornecido.
+        // A vantagem é de que cada id é único.
+        
+        var inputElement2 = document.getElementsByTagName('input');
+        // Método que busca a informação pelo tipo de TAG.
+        // Como não dá pra garantir que uma TAG seja única, 
+        // o getElementByTagName SEMPRE retorna um vetor.
+        // Além do getElementByTagName, o getElementByClassName 
+        // terá o mesmo retorno (vetor), já que também não se pode
+        // garantir que só se tenha uma classe. 
+        
+        var inputElement3 = document.querySelector('body div#app2 input');
+        // Diferente dos métodos anteriores, o querySelector permite 
+        // que caminho seja referenciado desde o BODY (parte mais externa) até
+        // o local do input (parte mais interna).
+        // Nesse caso, será procurado o INPUT que está dentro da DIV com ID = app2
+        // que está dentro do BODY.
+
+        // IMPORTANTE: O querySelector vai sempre retornar apenas um elemento.
+        // Se existirem mais de um elemento com a mesma identificação passada
+        // ele vai retornar apenas a primeira que encontrar.
+
+        var inputElement4 = document.querySelector('input[name=nome]');
+        
+        var btnElement = document.querySelector('button.botao');
+
+        btnElement.onclick = function(){
+            var text = inputElement.value;
+            // função utilizada para recuperar o valor que foi informado na caixa de texto.
+            alert(text);
+        }
+
+    </script>
+</body>
+</html>

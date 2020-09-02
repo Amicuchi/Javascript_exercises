@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lidando com Elementos</title>
+</head>
+<body>
+
+    <div class="top-bar-container">
+        <a href="/index.html">Página inicial</a>
+        <hr> <br>
+    </div>
+
+    <div id="app3">
+        <div class="box"> </div>
+    </div>
+
+    <script>
+    var linkElement = document.createElement('a');
+    // Nessa linha, o método document.createElement vai criar uma TAG "a" no HTML.
+    linkElement.setAttribute('href', 'http://rocketseat.com.br');
+    // Como o nome do método sugere, dessa maneira, podemos configurar
+    // qualquer atributo da tag criada.
+    linkElement.setAttribute('title', 'site da RocketSeat')
+
+    var textElement = document.createTextNode('Acesse o site da RocketSeat');
+    // Como a tag a href cria um link e demanda um texto, 
+    // o método document.createTextNode insere o texto necessário para que a TAG
+    // fique completa.
+
+    linkElement.appendChild(textElement);
+
+    var containerElement = document.querySelector('#app3');
+    containerElement.appendChild(linkElement);
+    
+    </script>
+</body>
+</html>

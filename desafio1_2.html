@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - Desafio 1.2</title>
+</head>
+<body>
+    <div class="top-bar-container">
+        <a href="/index.html">Página inicial</a>
+        <hr> <br>
+    </div>
+
+    <div>
+        <p>
+            Crie uma função que dado um intervalo 
+            (entre x e y) exiba todos número pares
+        </p>
+
+        <hr>
+        <p>essa função, por ter sido criada em JavaScript, não será exibida no 
+           html. Porém, se você abrir o Inspecionar Elemento em seu navegador,
+           poderá verificar o resultado.
+        </p>
+    </div>
+    <script>
+        
+        function pares(x, y) {
+            for (var i = x; i <= y; i++) {
+                if (i % 2 == 0){
+                    console.log(i);
+                } 
+            }
+        }
+pares(32, 321);
+    </script>
+</body>
+</html>

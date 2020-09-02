@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 2.2</title>
+
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="top-bar-container">
+        <a href="/index.html">Página inicial</a>
+        <hr> <br>
+    </div>
+    
+    <div id='cabecalho'>
+        <h1>Desafio 2.1 e 2.2</h1>
+        <h2>Botão que replica quadrado</h2>
+        <p>Crie um botão que ao ser clicado cria um novo elemento em tela com a 
+            forma de um quadrado vermelho com 100px de altura e largura. <br> 
+            Sempre que o botão for clicado um novo quadrado deve aparecer na tela.
+        </p>
+
+        <h2>Passe o mouse para trocar a cor do quadrado</h2>
+        <p>
+        Utilizando o resultado do primeiro desafio (2.1), 
+        toda vez que o usuário passar o mouse por cima de
+        algum quadrado troque sua cor para uma cor aleatória 
+        gerada pela função abaixo: <br>
+            function getRandomColor() { <br>
+                var letters = "0123456789ABCDEF"; <br>
+                var color = "#"; <br>
+                for (var i = 0; i < 6; i++) { <br>
+                color += letters[Math.floor(Math.random() * 16)]; <br>
+                } <br>
+                return color; <br>
+            } <br>
+            var newColor = getRandomColor(); // #E943F0
+        </p>
+        <br>
+        <hr>
+        <br>
+    </div>
+    <div></div>
+    <button id='btnCriar' class="botao" onclick="createBoxie()">Adiciona Quadrado</button>
+    
+    <div id="app"></div>
+    
+    <script>
+        function createBoxie(){
+            var elementoQuadrado = document.createElement('div');
+            elementoQuadrado.setAttribute('class', 'box');
+
+            var criarElemento = document.querySelector('#app');
+            criarElemento.appendChild(elementoQuadrado);
+
+            elementoQuadrado.onmouseover = function() {
+                elementoQuadrado.style.backgroundColor = getRandomColor();
+            };
+            elementoQuadrado.appendChild(elementoQuadrado);
+        }
+
+        function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        //var newColor = getRandomColor(); // #E943F0
+    </script>
+</body>
+</html>

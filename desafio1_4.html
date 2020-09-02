@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1000, initial-scale=1.0">
+    <title>Curso de JavaScript - Desafio 1.4</title>
+</head>
+<body>
+    <div class="top-bar-container">
+        <a href="/index.html">Página inicial</a>
+        <hr> <br>
+    </div>
+
+    <p> Escreva uma função que dado um total de anos de 
+        estudo retorna o quão experiente o usuário é: </p>
+
+    <script>
+        function experiencia(anos) {
+
+            switch (true) {
+                case ( anos == 0 || anos == 1 ):
+                    return 'Iniciante';
+                case ( anos == 2 || anos == 3 ):
+                    return 'Intermediário';
+                case ( anos == 4 || anos == 5 || anos == 6 ):
+                    return 'Avançado';
+                case ( anos > 6 ):
+                    return 'Jedi Master';
+                default:
+                    return 'we are out!';
+            }
+        }
+        
+        var anosEstudo = 7;
+        console.log(experiencia(anosEstudo));
+    </script>
+
+</body>
+</html>

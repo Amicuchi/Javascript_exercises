@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 2.3 e 2.4</title>
+</head>
+<body>
+    <div class="top-bar-container">
+        <a href="/index.html">Página inicial</a>
+        <hr> <br>
+    </div>
+    
+    <div id="cabecalho234">
+        <h1>Desafio 2.3 e 2.4</h1>
+        <h2>Desafio 2.3 - Criando lista não ordenada</h2>
+        <p>
+            A partir do seguinte vetor: <br>
+                var nomes = ["Diego", "Gabriel", "Lucas"]; <br>
+            Preencha uma lista (< ul >) no HTML com os itens da seguinte forma: <br>
+                * Diego <br>
+                * Gabriel <br>
+                * Lucas <br>
+        </p>
+
+        <h2>Desafio 2.4 - </h2>
+        <p>
+            Seguindo o resultado do exercício anterior 
+            adicione um input em tela e um botão como a seguir: <br> <br>
+            < input type="text" name="nome"> <br>
+            < button onClick="adicionar()">Adicionar< /button> <br> <br>
+            Ao clicar no botão, a função adicionar() deve ser 
+            disparada adicionando um novo item a lista de
+            nomes baseado no nome preenchido no input e 
+            renderizando o novo item em tela juntos aos demais 
+            itens anteriores. Além disso, o conteúdo do input 
+            deve ser apagado após o clique.
+        </p>
+        <br> <br>
+        <hr>
+        <br> <br>
+    </div>
+
+    
+    <div id="listaDeNomes">
+        <ul></ul>
+    </div>
+
+    <input type="text" id="nome">
+    <button onClick="adicionar()">Adicionar</button>
+            
+    <script>
+        //Array de nomes fornecido no desafio
+        var nomes = ["Diego", "Gabriel", "Lucas"];
+        
+        //Pegando o elemento UL para dar início a lista
+        var elementoLista = document.querySelector('ul');
+        
+        //Pegando o nome na caixa de texto
+        var inputNovoNome = document.getElementById('nome');
+
+        //Adicionando item ao elemento li que é filho do elemento ul
+        function adicionaItem(nome) {
+            console.log("TCL: adicionaItem -> nome", nome);
+            
+            //criando e atribuindo elemento li que é filho de ul
+            var elementoFilho = document.createElement("li");
+
+            //criando o texto para inserir no li
+            var textoDoFilho = document.createTextNode(nome);
+
+            //inserindo texto ao elemento li
+            elementoFilho.appendChild(textoDoFilho);
+
+            //inserindo o li ao elemento ul
+            elementoLista.appendChild(elementoFilho);
+        }
+
+        //percorrendo cada nome do array de nomes
+        // e adicionando a lista
+        for (nome of nomes) {
+            //chamando função que insere o nome
+            adicionaItem(nome);
+        }
+
+        function adicionar(){
+            //adiciona o nome digitado à lista
+            adicionaItem(inputNovoNome.value);
+            // Apaga o campo de caixa de texto
+            inputNovoNome.value = "";
+        }
+
+    </script>
+</body>
+</html>

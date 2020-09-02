@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="top-bar-container">
+        <a href="/index.html">Página inicial</a>
+        <hr> <br>
+    </div>
+    
+    <div id="app">
+        <!-- Quando clicar com o mouse sobre esse botão, um alerta será disparado.-->
+        <button onclick="mostrarAlerta()">
+            Me aperte!
+        </button>
+
+        <br> <br>
+
+        <!-- Quando passar o mouse sobre esse botão, um alerta será disparado. -->
+        <button onmouseover="disparaAlerta()">
+            Não me toque!
+        </button>
+
+    </div>
+
+    <script>
+        function mostrarAlerta(){
+            alert('Botão foi pressionado!');
+        }
+
+        function disparaAlerta(){
+            alert('Falei pra não me tocar !');
+        }
+    </script>
+</body>
+</html>

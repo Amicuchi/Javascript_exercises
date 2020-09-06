@@ -19,6 +19,16 @@ var toDos = [
 ];
 
 function renderToDos() {
+
+    listElement.innerHTML = '';
+        // Esse método recupera todo o conteúdo que tiver dentro do HTML.
+        // Nesse caso específico, o listElement recupera todo conteúdo que tem 
+        // dentro da lista (ul)
+        // Como, depois de recuperar todo o conteúdo da ul, estamos atribuindo
+        // valor vazio, todo o conteúdo que tiver sido inserido na ul será excluído.
+        // IMPORTANTE perceber que isso não vai apagar nada do array, apenas da ul.
+        // Esse método se faz necessário para que os mesmos itens não sejam inseridos repetidamente.        
+
     for (todo of toDos){
         var toDoElement = document.createElement('li');
             // Essa variável será utilizada para criar o elemento linha
@@ -37,3 +47,25 @@ function renderToDos() {
 }
 
 renderToDos();
+
+function addToDo() {
+    // A primeira coisa que essa função deverá fazer é recuperar o valor 
+    // inserido na caixa de texto (input).
+    // Para isso utilizaremos o inputElement, que é onde o texto foi inserido.
+    var toDoText = inputElement.value;
+        // inputElement.value recupera o valor digitado
+    
+    // A segunda coisa a ser feita é adicionar o texto recuperado ao array toDos.
+    toDos.push(toDoText);
+        // método push é utilizado para inserir um novo item ao final de um array.
+    
+    inputElement.value = '';
+        // essa linha foi utilizada para apagar o conteúdo inserido na caixa de texto.
+        // para isso, bastou definir o input como vazio.    
+    renderToDos();
+        // Essa função foi chamada novamente para que possa renderizar a nova lista.
+}
+
+buttonElement.onclick = addToDo();
+    // Aqui, chamamos a função addToDo() através do click no botão Adicionar.
+    // Para isso, foi necessário o método onclick.

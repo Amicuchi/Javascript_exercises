@@ -10,13 +10,16 @@ var inputElement = document.querySelector("#app input");
 var buttonElement = document.querySelector("#app button");
     // Recupera o click no botão, cada vez que o usuário clicar. 
 
-// Abaixo, o array com a lista inicial 
-var toDos = [
-    'Fazer café',
-    'Estudar Javascript',
-    'Acessar a comunidade',
-    'Responder pergutas'
-];
+var toDos = JSON.parse(localStorage.getItem('list_toDos')) || [];
+    //JSON.parse converte o conteudo da localStorage em um array.
+    // Funcionalidade necessaria para podermos trabalhar com esse conteudo no javascript.
+
+    // O problema encontrado nesse caso, é que quando a aplicacao for executada pela primeira vez, 
+    // esse comando retornara um erro, ja que ainda nao existe um array. 
+
+    // Para resolver isso, foi incluido, apos o JSON, uma condicional "ou" ||
+    // Assim, quando ele não encontrar conteudo que possa ser convertido num array,
+    // retornara um array vazio "[]".
 
 function renderToDos() {
 
@@ -36,10 +39,38 @@ function renderToDos() {
         var toDoText = document.createTextNode(todo);
             // Essa variável foi criada para atribuir o texto contido em cada 
             // elemento da lista à nova linha.
+        var linkElement = document.createElement("a");
+            // Essa variável será utilizada para criar o link responsável por
+            // excluir um item da lista.
+        linkElement.setAttribute('href', '#');
+            // Como um elemento "a" foi criado, o atributo href deve ser definido.
+            // Momentaneamente, definimos o valor de href como sendo "#"
+            // apenas para evitar qualquer efeito indesejado.
+
+        var pos = toDos.indexOf(todo);
+            // O metodo indexOf pega o parametro que lhe foi informado e 
+            // procura dentro do array de onde ele foi chamado qual eh a posicao
+            // do conteudo pedido.
+            // Nesse caso, O metodo indexOf vai procurar no array toDos qual eh a posicao 
+            // do texto informado em toDo.
+            // E atribuir essa posicao a variavel pos, que sera usada posteriormente.
+
+        linkElement.setAttribute('onclick', 'deleteToDo(' + pos + ')');
+
+        var linkText = document.createTextNode('Excluir');
+            // Essa variável contem o texto que será incluido 
+            // na tag "a", criada anteriormente.
+        linkElement.appendChild(linkText);
+            // O appendChild foi utilizado para incluir o texto Excluir na tag "a". 
+            // Para isso, ele recupera o conteudo/valor da variavel linkText.    
         toDoElement.appendChild(toDoText);
             // O appendChild foi utilizado para adicionar cada toDoText a cada
             // toDoElement.
             // Simplificando, cada linha de tarefas será incluída no elemento da tabela.
+        toDoElement.appendChild(linkElement);
+            // Além de inserir o texto no elemento "li", 
+            // após o texto será inserido o link "Excluir"
+            // Assim, após cada novo "To Do Item" será incluido um "Excluir"
         listElement.appendChild(toDoElement);
             // Uma vez que o texto da tarefa foi inserido na linha, 
             // é hora de inserir a linha na tabela.
@@ -64,8 +95,38 @@ function addToDo() {
         // para isso, bastou definir o input como vazio.    
     renderToDos();
         // Essa função foi chamada novamente para que possa renderizar a nova lista.
+    saveToStorage();
 }
 
-buttonElement.onclick = addToDo();
+buttonElement.onclick = addToDo;
     // Aqui, chamamos a função addToDo() através do click no botão Adicionar.
     // Para isso, foi necessário o método onclick.
+
+function deleteToDo(pos){
+    toDos.splice(pos, 1);
+    // O método splice remove elementos do array e, se necessário, reinsere outra informação.
+    // baseando-se na posição informada, retornando o elemento excluido.
+    // Nesse caso, especificamente, a função fara o seguinte:
+    // receberá uma posição como parametro e removerá o primeiro item a partir 
+    // da posicao recebida, que é o proprio item a ser excluido.
+    // Se a posicao recebida for a 1, por exemplo, ele vai, a partir da posicao 1
+    // remover 1 item.
+    // Se for a posicao 0, a partir dessa posicao, ele removera 1 item, que eh o proprio
+    // item 0, no exemplo.
+    renderToDos();
+    saveToStorage();
+}
+
+function saveToStorage(){
+    localStorage.setItem('list_toDos', JSON.stringify(toDos));
+    // A variavel localStorage é uma variavel global.
+    // não precisa ser iniciada antes.
+    // IMPORTANTE lembrar que a localStorage não tem "habilidade" 
+    // para salvar objetos ou vetores.
+    // Ela so consegue salvar uma chave e uma string.
+    // Para conseguir salvar um array na localStorage vamos usar o JSON
+    // O JSON tem uma estrutura muito parecida ao de objeto no Javascript, porém é uma STRING.
+    // Para converter o array para string, utilizamos o método:
+    // JSON.stringfy(toDos)
+
+}
